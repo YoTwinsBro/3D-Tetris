@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D Tetris", "3D Tetris.csproj", "{D31F0994-8DB8-1C90-B3E6-118738FBA1BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D Tetris.Plugins", "3D Tetris.Plugins.csproj", "{13B8E800-B758-DC3A-5F8D-DCED1AEF7128}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D Tetris.Editor.Plugins", "3D Tetris.Editor.Plugins.csproj", "{2C457A2E-D78D-6C57-D4D0-52B31BFAFD08}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D31F0994-8DB8-1C90-B3E6-118738FBA1BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31F0994-8DB8-1C90-B3E6-118738FBA1BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31F0994-8DB8-1C90-B3E6-118738FBA1BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31F0994-8DB8-1C90-B3E6-118738FBA1BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B8E800-B758-DC3A-5F8D-DCED1AEF7128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B8E800-B758-DC3A-5F8D-DCED1AEF7128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B8E800-B758-DC3A-5F8D-DCED1AEF7128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B8E800-B758-DC3A-5F8D-DCED1AEF7128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C457A2E-D78D-6C57-D4D0-52B31BFAFD08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C457A2E-D78D-6C57-D4D0-52B31BFAFD08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C457A2E-D78D-6C57-D4D0-52B31BFAFD08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C457A2E-D78D-6C57-D4D0-52B31BFAFD08}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
