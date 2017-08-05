@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4830430991808758}
-  - component: {fileID: 114152720328814720}
+  - component: {fileID: 114349527297200726}
   m_Layer: 0
   m_Name: Type1
   m_TagString: Cube
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4238812960647438}
-  - component: {fileID: 114242505303885842}
+  - component: {fileID: 114657597987547140}
   m_Layer: 0
   m_Name: Type5
   m_TagString: Cube
@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4330097201278610}
-  - component: {fileID: 114658074424170564}
+  - component: {fileID: 114311368939655836}
   m_Layer: 0
   m_Name: Type2
   m_TagString: Cube
@@ -473,7 +473,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4461582180045796}
-  - component: {fileID: 114571555290044312}
+  - component: {fileID: 114127917460495078}
   m_Layer: 0
   m_Name: Type6
   m_TagString: Cube
@@ -489,7 +489,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4814961501812476}
-  - component: {fileID: 114974991788743274}
+  - component: {fileID: 114167438525405876}
   m_Layer: 0
   m_Name: Type3
   m_TagString: Cube
@@ -505,7 +505,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4427285651613344}
-  - component: {fileID: 114351844099442484}
+  - component: {fileID: 114691732950419952}
   m_Layer: 0
   m_Name: Type4
   m_TagString: Cube
@@ -1899,58 +1899,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1447508515580650}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114152720328814720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1595960864689898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallSpeed: 3
-  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
-    type: 2}
-  SimuCube: []
-  allowRotation: 1
-  limitRotation: 0
---- !u!114 &114242505303885842
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1651473727103932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallSpeed: 3
-  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
-    type: 2}
-  SimuCube: []
-  allowRotation: 1
-  limitRotation: 0
---- !u!114 &114351844099442484
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1955324404072092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallSpeed: 3
-  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
-    type: 2}
-  SimuCube: []
-  allowRotation: 1
-  limitRotation: 0
---- !u!114 &114571555290044312
+--- !u!114 &114127917460495078
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1961,30 +1910,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 3
+  fallSpeed: 3.4028235e+38
   SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
     type: 2}
-  SimuCube: []
   allowRotation: 1
   limitRotation: 0
---- !u!114 &114658074424170564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1678178719481124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallSpeed: 3
-  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
-    type: 2}
-  SimuCube: []
-  allowRotation: 1
-  limitRotation: 0
---- !u!114 &114974991788743274
+--- !u!114 &114167438525405876
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1995,9 +1926,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 3
+  fallSpeed: 3.4028235e+38
   SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
     type: 2}
-  SimuCube: []
+  allowRotation: 1
+  limitRotation: 0
+--- !u!114 &114311368939655836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678178719481124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSpeed: 3.4028235e+38
+  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
+    type: 2}
+  allowRotation: 1
+  limitRotation: 0
+--- !u!114 &114349527297200726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1595960864689898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSpeed: 3.4028235e+38
+  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
+    type: 2}
+  allowRotation: 1
+  limitRotation: 0
+--- !u!114 &114657597987547140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651473727103932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSpeed: 3.4028235e+38
+  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
+    type: 2}
+  allowRotation: 1
+  limitRotation: 0
+--- !u!114 &114691732950419952
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1955324404072092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df653990c3dcf4343941c9effc2e4c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSpeed: 3.4028235e+38
+  SimulatedCube: {fileID: 1219126406847736, guid: 90fb4e7c3a65e114fb7d70be4e417b33,
+    type: 2}
   allowRotation: 1
   limitRotation: 0

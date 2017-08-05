@@ -10,13 +10,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	float fall = 0;
-	public float fallSpeed = 1;
+	public float fallSpeed = float.MaxValue;
 	public GameObject SimulatedCube;
-
-	public GameObject[] SimuCube;
 
 	public bool allowRotation=true;
 	public bool limitRotation=false;
+
+	private int lastTimeCameraNo = 0;
+
 
 	// Use this for initialization
 	void Start()
@@ -31,10 +32,19 @@ public class PlayerController : MonoBehaviour
 	}
 
 
-	void CheckUserInput()
+	public void CheckUserInput()
 	{
+		FindObjectOfType<GameController>().UpdateGrid(this);
+
+		transform.Rotate(0, 90 * (FindObjectOfType<CameraFollow>().CameraNo-lastTimeCameraNo), 0,Space.World);
+		lastTimeCameraNo = FindObjectOfType<CameraFollow>().CameraNo;
+
+
+
 		if (FindObjectOfType<CameraFollow>().CameraNo == 0)
 		{
+			
+
 			if (Input.GetKeyDown(KeyCode.D))
 			{
 				transform.position += new Vector3(1, 0, 0);
@@ -132,22 +142,29 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed)
 			{
-				transform.position += new Vector3(0, -1, 0);
-				if (!CheckIsValidPosition())
-				{
-					transform.position -= new Vector3(0, -1, 0);
-					FindObjectOfType<GameController>().DeleteRow();
-					enabled = false;
-					FindObjectOfType<GameController>().DropSpawn();
-				}
-				else
-				{
-					FindObjectOfType<GameController>().UpdateGrid(this);
-				}
-				fall = Time.time;
+
+				//transform.position += new Vector3(0, -1, 0);
+				//if (!CheckIsValidPosition())
+				//{
+				//	transform.position -= new Vector3(0, -1, 0);
+				//	//FindObjectOfType<GameController>().DeleteRow();
+				//	enabled = false;
+				//	FindObjectOfType<GameController>().DropSpawn();
+				//}
+				//else
+				//{
+				//	FindObjectOfType<GameController>().UpdateGrid(this);
+				//}
+				//fall = Time.time;
+				DownTheCube();
+				FindObjectOfType<GameController>().UpdateGrid(this);
+				enabled = false;
+				FindObjectOfType<GameController>().DropSpawn();
+
 			}
 		} else if (FindObjectOfType<CameraFollow>().CameraNo == 1)
 		{
+			
 			if (Input.GetKeyDown(KeyCode.W))
 			{
 				transform.position += new Vector3(1, 0, 0);
@@ -245,21 +262,28 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed)
 			{
-				transform.position += new Vector3(0, -1, 0);
-				if (!CheckIsValidPosition())
-				{
-					transform.position -= new Vector3(0, -1, 0);
-					FindObjectOfType<GameController>().DeleteRow();
-					enabled = false;
-					FindObjectOfType<GameController>().DropSpawn();
-				}
-				else
-				{
-					FindObjectOfType<GameController>().UpdateGrid(this);
-				}
-				fall = Time.time;
+
+				//transform.position += new Vector3(0, -1, 0);
+				//if (!CheckIsValidPosition())
+				//{
+				//	transform.position -= new Vector3(0, -1, 0);
+				//	//FindObjectOfType<GameController>().DeleteRow();
+				//	enabled = false;
+				//	FindObjectOfType<GameController>().DropSpawn();
+				//}
+				//else
+				//{
+				//	FindObjectOfType<GameController>().UpdateGrid(this);
+				//}
+				//fall = Time.time;
+				DownTheCube();
+				FindObjectOfType<GameController>().UpdateGrid(this);
+				enabled = false;
+				FindObjectOfType<GameController>().DropSpawn();
+
 			}
 		} else if (FindObjectOfType<CameraFollow>().CameraNo == 2) {
+			
 			if (Input.GetKeyDown(KeyCode.A))
 			{
 				transform.position += new Vector3(1, 0, 0);
@@ -357,22 +381,29 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed)
 			{
-				transform.position += new Vector3(0, -1, 0);
-				if (!CheckIsValidPosition())
-				{
-					transform.position -= new Vector3(0, -1, 0);
-					FindObjectOfType<GameController>().DeleteRow();
-					enabled = false;
-					FindObjectOfType<GameController>().DropSpawn();
-				}
-				else
-				{
-					FindObjectOfType<GameController>().UpdateGrid(this);
-				}
-				fall = Time.time;
+
+				//transform.position += new Vector3(0, -1, 0);
+				//if (!CheckIsValidPosition())
+				//{
+				//	transform.position -= new Vector3(0, -1, 0);
+				//	//FindObjectOfType<GameController>().DeleteRow();
+				//	enabled = false;
+				//	FindObjectOfType<GameController>().DropSpawn();
+				//}
+				//else
+				//{
+				//	FindObjectOfType<GameController>().UpdateGrid(this);
+				//}
+				//fall = Time.time;
+				DownTheCube();
+				FindObjectOfType<GameController>().UpdateGrid(this);
+				enabled = false;
+				FindObjectOfType<GameController>().DropSpawn();
+
 			}
 		} else if (FindObjectOfType<CameraFollow>().CameraNo == 3)
 		{
+			
 			if (Input.GetKeyDown(KeyCode.S))
 			{
 				transform.position += new Vector3(1, 0, 0);
@@ -470,22 +501,33 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed)
 			{
-				transform.position += new Vector3(0, -1, 0);
-				if (!CheckIsValidPosition())
-				{
-					transform.position -= new Vector3(0, -1, 0);
-					FindObjectOfType<GameController>().DeleteRow();
-					enabled = false;
-					FindObjectOfType<GameController>().DropSpawn();
-				}
-				else
-				{
-					FindObjectOfType<GameController>().UpdateGrid(this);
-				}
-				fall = Time.time;
+
+				//transform.position += new Vector3(0, -1, 0);
+				//if (!CheckIsValidPosition())
+				//{
+				//	transform.position -= new Vector3(0, -1, 0);
+				//	//FindObjectOfType<GameController>().DeleteRow();
+				//	enabled = false;
+				//	FindObjectOfType<GameController>().DropSpawn();
+				//}
+				//else
+				//{
+				//	FindObjectOfType<GameController>().UpdateGrid(this);
+				//}
+				//fall = Time.time;
+				DownTheCube();
+				FindObjectOfType<GameController>().UpdateGrid(this);
+				enabled = false;
+				FindObjectOfType<GameController>().DropSpawn();
+
 			}
 		}
 		UpdateSimulatedCube();
+	}
+
+	void DownTheCube()
+	{
+		transform.position-= new Vector3(0, FindObjectOfType<GameController>().GetDistanceToButtom(this), 0);
 	}
 
 	void UpdateSimulatedCube()
@@ -494,7 +536,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Vector3 pos = FindObjectOfType<GameController>().Round(cube.position)-new Vector3(0,FindObjectOfType<GameController>().GetDistanceToButtom(this),0);
 			GameObject Simu= Instantiate(SimulatedCube, pos, cube.rotation);
-			Destroy(Simu, 0.05f);
+			Destroy(Simu, 0.02f);
 		}
 
 	}

@@ -22,10 +22,12 @@ public class CameraFollow : MonoBehaviour
 		//uaternion targetAng = Quaternion.Euler(0, 90, 0);
 		if (Input.GetKeyDown(KeyCode.LeftArrow))
 		{
+			
 			//transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 			//transform.rotation = Quaternion.Slerp(current, targetAng, Time.deltaTime*smoothing);
 			transform.Rotate(0, 90, 0);
 			CameraNo = (CameraNo + 5) % 4;
+
 
 		}
 		else if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -34,6 +36,7 @@ public class CameraFollow : MonoBehaviour
 			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
 			//transform.rotation = Quaternion.Euler(0, -90, 0);
 			CameraNo = (CameraNo +3 ) % 4;
+
 		}
 	}
 
