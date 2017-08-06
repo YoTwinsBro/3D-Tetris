@@ -20,9 +20,9 @@ public class CameraFollow : MonoBehaviour
 		//Quaternion current = transform.localRotation;
 
 		//uaternion targetAng = Quaternion.Euler(0, 90, 0);
-		if (Input.GetKeyDown(KeyCode.LeftArrow) || touchController.swipeLeft == true)
+		if (Input.GetKeyDown(KeyCode.LeftArrow) || touchController.swipeRight == true)
 		{
-			touchController.tap = touchController.swipeLeft = touchController.swipeRight = touchController.swipeUp = touchController.swipeDown = false;
+			touchController.swipeLeft = touchController.swipeRight = false;
 			//transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 			//transform.rotation = Quaternion.Slerp(current, targetAng, Time.deltaTime*smoothing);
 			transform.Rotate(0, 90, 0);
@@ -30,9 +30,9 @@ public class CameraFollow : MonoBehaviour
 
 
 		}
-		else if (Input.GetKeyDown(KeyCode.RightArrow) || touchController.swipeRight == true)
+		else if (Input.GetKeyDown(KeyCode.RightArrow) || touchController.swipeLeft == true)
 		{
-			touchController.tap = touchController.swipeLeft = touchController.swipeRight = touchController.swipeUp = touchController.swipeDown = false;
+			touchController.swipeLeft = touchController.swipeRight = false;
 			transform.Rotate(0, -90, 0);
 			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
 			//transform.rotation = Quaternion.Euler(0, -90, 0);
