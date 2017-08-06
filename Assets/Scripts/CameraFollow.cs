@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
 	public float smoothing = 3f;
 	public int CameraNo = 0;
-	GameObject cube;
+	public TouchController touchController;
 
 	void Update()
 	{
@@ -15,14 +15,14 @@ public class CameraFollow : MonoBehaviour
 
 	void CheckCameraInput()
 	{
-		
+
 		//Quaternion rotation = Quaternion.LookRotation(relativePos);
 		//Quaternion current = transform.localRotation;
 
 		//uaternion targetAng = Quaternion.Euler(0, 90, 0);
-		if (Input.GetKeyDown(KeyCode.LeftArrow))
+		if (Input.GetKeyDown(KeyCode.LeftArrow) || touchController.swipeLeft == true)
 		{
-			
+			touchController.tap = touchController.swipeLeft = touchController.swipeRight = touchController.swipeUp = touchController.swipeDown = false;
 			//transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 			//transform.rotation = Quaternion.Slerp(current, targetAng, Time.deltaTime*smoothing);
 			transform.Rotate(0, 90, 0);
@@ -30,8 +30,9 @@ public class CameraFollow : MonoBehaviour
 
 
 		}
-		else if (Input.GetKeyDown(KeyCode.RightArrow))
+		else if (Input.GetKeyDown(KeyCode.RightArrow) || touchController.swipeRight == true)
 		{
+			touchController.tap = touchController.swipeLeft = touchController.swipeRight = touchController.swipeUp = touchController.swipeDown = false;
 			transform.Rotate(0, -90, 0);
 			//transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, -90, 0), Time.deltaTime);
 			//transform.rotation = Quaternion.Euler(0, -90, 0);

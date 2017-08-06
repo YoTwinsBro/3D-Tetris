@@ -36,7 +36,14 @@ public class PlayerController : MonoBehaviour
 	{
 		FindObjectOfType<GameController>().UpdateGrid(this);
 
+		Quaternion resume= transform.rotation;
+
 		transform.Rotate(0, 90 * (FindObjectOfType<CameraFollow>().CameraNo-lastTimeCameraNo), 0,Space.World);
+
+		if (!CheckIsValidPosition())
+			transform.rotation = resume;
+		FindObjectOfType<GameController>().UpdateGrid(this);
+
 		lastTimeCameraNo = FindObjectOfType<CameraFollow>().CameraNo;
 
 
