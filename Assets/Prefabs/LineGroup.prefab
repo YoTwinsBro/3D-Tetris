@@ -656,7 +656,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1659333626585556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 10.5, z: 3.5}
+  m_LocalPosition: {x: 3.5, y: 12.5, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4421665410994174}
@@ -816,11 +816,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fcef4f17d9cab428b541e371643416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFollow: {fileID: 0}
   cubes:
-  - {fileID: 1595960864689898, guid: af12cce7d48bd9147bfd100d244b030c, type: 2}
-  - {fileID: 1916288075879828, guid: af12cce7d48bd9147bfd100d244b030c, type: 2}
-  - {fileID: 1955324404072092, guid: af12cce7d48bd9147bfd100d244b030c, type: 2}
-  - {fileID: 1914419772669512, guid: af12cce7d48bd9147bfd100d244b030c, type: 2}
+  - {fileID: 1565705837439418, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
   dropPoints:
   - {fileID: 4522581755796472}
   cubeAngles:
@@ -860,6 +858,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 114871799471103108}
   HighlightColor: {r: 1, g: 0, b: 0, a: 0.39215687}
+  CameraPosition: {fileID: 0}
+  RotateSpeed: 0.01
+  cameraFollow: {fileID: 0}
   swipeLeft: 0
   swipeRight: 0
   touched: 0
@@ -918,7 +919,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 0}
@@ -2387,7 +2388,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749531948312852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 12, y: 12, z: 1}
   m_Children: []
   m_Father: {fileID: 224672139550205792}
@@ -2405,7 +2406,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1112986511960954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224644200371711844}

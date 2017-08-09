@@ -5,16 +5,15 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
 
 	public static int grid_X = 7;
-	public static int grid_Y = 20;
+	public static int grid_Y = 40;
 	public static int grid_Z = 7;
-
 	public static Transform[,,] grid = new Transform[grid_X,grid_Y,grid_Z];
 
-
-
+	public CameraFollow cameraFollow;
 	public GameObject[] cubes;
 	public Transform[] dropPoints;
 	public Transform[] cubeAngles;
+	public GameObject cube_Clone;
 
 	// Use this for initialization
 	void Start () {
@@ -171,6 +170,12 @@ public class GameController : MonoBehaviour {
 		int spawnAngleIndex = Random.Range(0, cubeAngles.Length);
 		GameObject Activecube = cubes[Random.Range(0, cubes.Length)];
 
-		Instantiate(Activecube, dropPoints[spawnPointIndex].position, cubeAngles[spawnAngleIndex].rotation);
+		cube_Clone= Instantiate(Activecube, dropPoints[spawnPointIndex].position, cubeAngles[spawnAngleIndex].rotation);
+		cube_Clone.transform.GetComponent<PlayerController>().cameraFollow = cameraFollow;
+	}
+
+	public void DropButton()
+	{
+		cube_Clone.transform.GetComponent<PlayerController>().DropButton();
 	}
 }

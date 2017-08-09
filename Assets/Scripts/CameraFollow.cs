@@ -6,11 +6,36 @@ public class CameraFollow : MonoBehaviour
 {
 	public float smoothing = 3f;
 	public int CameraNo = 0;
-	public TouchController touchController;
+	public GroundSliderTouchController touchController;
+	public GameObject test;
+	public Transform CameraFocusInGround;
+	public Transform CameraFoucsInGlobal;
+	public bool cubeTouch = false;
+
+	private Vector3 CameraPosition;
+
+
+	private void Awake()
+	{
+		CameraPosition = transform.position;
+	}
 
 	void Update()
 	{
 		CheckCameraInput();
+		ChangePosition();
+	}
+
+
+	private void ChangePosition()
+	{
+		if (cubeTouch)
+			CameraPosition = CameraFoucsInGlobal.position;
+
+		if (!cubeTouch)
+			CameraPosition = CameraFocusInGround.position;
+
+		test.transform.position = Vector3.Lerp(test.transform.position, CameraPosition, Time.deltaTime*2);
 	}
 
 	void CheckCameraInput()
