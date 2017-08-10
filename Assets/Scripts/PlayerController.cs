@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 	public bool cubeRotate, cubeLeft, cubeRight, cubeUp, cubeDown, cubeDrop = false;
 
 
+	
 
 	float fall = 0;
 	public float fallSpeed = float.MaxValue;
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 	public bool cubeactive = true;
 
 	private int lastTimeCameraNo = 0;
-	private Vector3 DropPosition;
+	public Vector3 DropPosition;
 
 
 	// Use this for initialization
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 	
 	void Update()
 	{
+		DownTheCube();
 		CheckUserInput();
 	}
 
@@ -81,37 +83,75 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 		}
 
 		MovingPos = MovingOriPos = data.position;
-		
+
+		if ((MovingPos.x - OriginalPos.x) < -20 && (MovingPos.y - OriginalPos.y) > -10 && (MovingPos.y - OriginalPos.y) < 0)
+		{
+			cubeDown = true;
+			cubeLeft = true;
+			canEdit = false;
+			touched = false;
+			OriginalPos = data.position;
+		}
+
+		if ((MovingPos.x - OriginalPos.x) > -10 && (MovingPos.x - OriginalPos.x) < 0 && (MovingPos.y - OriginalPos.y) > 20)
+		{
+			cubeUp = true;
+			cubeLeft = true;
+			canEdit = false;
+			touched = false;
+			OriginalPos = data.position;
+		}
+
+		if ((MovingPos.x - OriginalPos.x) > 20 && (MovingPos.y - OriginalPos.y) < 10 && (MovingPos.y - OriginalPos.y) > 0)
+		{
+			cubeUp = true;
+			cubeRight = true;
+			canEdit = false;
+			touched = false;
+			OriginalPos = data.position;
+		}
+
+		if ((MovingPos.x - OriginalPos.x) < 10 && (MovingPos.x - OriginalPos.x) > 0 && (MovingPos.y - OriginalPos.y) < -20)
+		{
+			cubeDown = true;
+			cubeRight = true;
+			canEdit = false;
+			touched = false;
+			OriginalPos = data.position;
+		}
 
 		if ((MovingPos.x - OriginalPos.x) < -10 && (MovingPos.y - OriginalPos.y) < -20)
 		{
 			cubeDown = true;
-			OriginalPos = data.position;
 			canEdit = false;
 			touched = false;
+			Debug.Log(string.Format("Down/CamerNo: {0}",cameraFollow.CameraNo));
+			OriginalPos = data.position;
 		}
-		else if ((MovingPos.x - OriginalPos.x) > 10 && (MovingPos.y - OriginalPos.y) > 20)
+		if ((MovingPos.x - OriginalPos.x) > 10 && (MovingPos.y - OriginalPos.y) > 20)
 		{
 			cubeUp = true;
-			OriginalPos = data.position;
 			canEdit = false;
 			touched = false;
+			Debug.Log(string.Format("Up/CamerNo: {0}", cameraFollow.CameraNo));
+			OriginalPos = data.position;
 		}
-		else if ((MovingPos.x - OriginalPos.x) < -20 && (MovingPos.y - OriginalPos.y) > 10)
+		if ((MovingPos.x - OriginalPos.x) < -20 && (MovingPos.y - OriginalPos.y) > 10)
 		{
 			cubeLeft = true;
-			OriginalPos = data.position;
 			canEdit = false;
 			touched = false;
+			Debug.Log(string.Format("Left/CamerNo: {0}", cameraFollow.CameraNo));
+			OriginalPos = data.position;
 		}
-		else if ((MovingPos.x - OriginalPos.x) > 20 && (MovingPos.y - OriginalPos.y) < -10)
+		if ((MovingPos.x - OriginalPos.x) > 20 && (MovingPos.y - OriginalPos.y) < -10)
 		{
 			cubeRight = true;
-			OriginalPos = data.position;
 			canEdit = false;
 			touched = false;
+			Debug.Log(string.Format("Right/CamerNo: {0}", cameraFollow.CameraNo));
+			OriginalPos = data.position;
 		}
-
 	}
 
 	public void OnPointerUp(PointerEventData data)
@@ -152,23 +192,27 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 			{
 				cubeRight = false;
 				transform.position += new Vector3(1, 0, 0);
+				DropPosition = Round(transform.position);
 
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
 					FindObjectOfType<GameController>().UpdateGrid(this);
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.A)||cubeLeft)
+			if (Input.GetKeyDown(KeyCode.A)||cubeLeft)
 			{
 				cubeLeft = false;
 				transform.position += new Vector3(-1, 0, 0);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(-1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -176,13 +220,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.W)||cubeUp)
+			if (Input.GetKeyDown(KeyCode.W)||cubeUp)
 			{
 				cubeUp = false;
 				transform.position += new Vector3(0, 0, 1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, 1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -190,13 +236,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.S)||cubeDown)
+			if (Input.GetKeyDown(KeyCode.S)||cubeDown)
 			{
 				cubeDown = false;
 				transform.position += new Vector3(0, 0, -1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, -1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -204,7 +252,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
+			if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
 			{
 				cubeRotate = false;
 				if (allowRotation)
@@ -248,13 +296,9 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 					}
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
+			if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
 			{
-				cubeDrop = false;
-				DownTheCube();
-				FindObjectOfType<GameController>().UpdateGrid(this);
-				enabled = false;
-				FindObjectOfType<GameController>().DropSpawn();
+				DropButton();
 
 			}
 		} else if (FindObjectOfType<CameraFollow>().CameraNo == 1)
@@ -264,23 +308,27 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 			{
 				cubeUp = false;
 				transform.position += new Vector3(1, 0, 0);
+				DropPosition = Round(transform.position);
 
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
 					FindObjectOfType<GameController>().UpdateGrid(this);
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.S)||cubeDown)
+			if (Input.GetKeyDown(KeyCode.S)||cubeDown)
 			{
 				cubeDown = false;
 				transform.position += new Vector3(-1, 0, 0);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(-1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -288,13 +336,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.A)||cubeLeft)
+			if (Input.GetKeyDown(KeyCode.A)||cubeLeft)
 			{
 				cubeLeft = false;
 				transform.position += new Vector3(0, 0, 1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, 1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -302,13 +352,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.D)||cubeRight)
+			if (Input.GetKeyDown(KeyCode.D)||cubeRight)
 			{
 				cubeRight = false;
 				transform.position += new Vector3(0, 0, -1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, -1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -316,7 +368,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
+			if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
 			{
 				cubeRotate = false;
 				if (allowRotation)
@@ -360,7 +412,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 					}
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
+			if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
 			{
 				cubeDrop = false;
 
@@ -377,10 +429,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				//	FindObjectOfType<GameController>().UpdateGrid(this);
 				//}
 				//fall = Time.time;
-				DownTheCube();
-				FindObjectOfType<GameController>().UpdateGrid(this);
-				enabled = false;
-				FindObjectOfType<GameController>().DropSpawn();
+				DropButton();
 
 			}
 		} else if (FindObjectOfType<CameraFollow>().CameraNo == 2) {
@@ -389,23 +438,27 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 			{
 				cubeLeft = false;
 				transform.position += new Vector3(1, 0, 0);
+				DropPosition = Round(transform.position);
 
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
 					FindObjectOfType<GameController>().UpdateGrid(this);
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.D)||cubeRight)
+			if (Input.GetKeyDown(KeyCode.D)||cubeRight)
 			{
 				cubeRight = false;
 				transform.position += new Vector3(-1, 0, 0);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(-1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -413,13 +466,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.S)||cubeDown)
+			if (Input.GetKeyDown(KeyCode.S)||cubeDown)
 			{
 				cubeDown = false;
 				transform.position += new Vector3(0, 0, 1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, 1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -427,13 +482,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.W)||cubeUp)
+			if (Input.GetKeyDown(KeyCode.W)||cubeUp)
 			{
 				cubeUp = false;
 				transform.position += new Vector3(0, 0, -1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, -1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -441,7 +498,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
+			if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
 			{
 				cubeRotate = false;
 				if (allowRotation)
@@ -485,7 +542,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 					}
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
+			if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
 			{
 				cubeDrop = false;
 				//transform.position += new Vector3(0, -1, 0);
@@ -501,10 +558,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				//	FindObjectOfType<GameController>().UpdateGrid(this);
 				//}
 				//fall = Time.time;
-				DownTheCube();
-				FindObjectOfType<GameController>().UpdateGrid(this);
-				enabled = false;
-				FindObjectOfType<GameController>().DropSpawn();
+				DropButton();
 
 			}
 		} else if (FindObjectOfType<CameraFollow>().CameraNo == 3)
@@ -514,23 +568,27 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 			{
 				cubeDown = false;
 				transform.position += new Vector3(1, 0, 0);
+				DropPosition = Round(transform.position);
 
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
 					FindObjectOfType<GameController>().UpdateGrid(this);
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.W)||cubeUp)
+			if (Input.GetKeyDown(KeyCode.W)||cubeUp)
 			{
 				cubeUp = false;
 				transform.position += new Vector3(-1, 0, 0);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(-1, 0, 0);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -538,13 +596,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.D)||cubeRight)
+			if (Input.GetKeyDown(KeyCode.D)||cubeRight)
 			{
 				cubeRight = false;
 				transform.position += new Vector3(0, 0, 1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, 1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -552,13 +612,15 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.A)||cubeLeft)
+			if (Input.GetKeyDown(KeyCode.A)||cubeLeft)
 			{
 				cubeLeft = false;
 				transform.position += new Vector3(0, 0, -1);
+				DropPosition = Round(transform.position);
 				if (!CheckIsValidPosition())
 				{
 					transform.position -= new Vector3(0, 0, -1);
+					DropPosition = Round(transform.position);
 				}
 				else
 				{
@@ -566,7 +628,7 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 				}
 			}
 
-			else if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
+			if (Input.GetKeyDown(KeyCode.Space)||cubeRotate)
 			{
 				cubeRotate=false;
 				if (allowRotation)
@@ -610,52 +672,48 @@ public class PlayerController : MonoBehaviour, IPointerDownHandler, IDragHandler
 					}
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
+			if (Input.GetKeyDown(KeyCode.Return) || Time.time - fall >= fallSpeed||cubeDrop)
 			{
-				cubeDrop = false;
-				//transform.position += new Vector3(0, -1, 0);
-				//if (!CheckIsValidPosition())
-				//{
-				//	transform.position -= new Vector3(0, -1, 0);
-				//	//FindObjectOfType<GameController>().DeleteRow();
-				//	enabled = false;
-				//	FindObjectOfType<GameController>().DropSpawn();
-				//}
-				//else
-				//{
-				//	FindObjectOfType<GameController>().UpdateGrid(this);
-				//}
-				//fall = Time.time;
-				DownTheCube();
-				FindObjectOfType<GameController>().UpdateGrid(this);
-				enabled = false;
-				
-				FindObjectOfType<GameController>().DropSpawn();
+				DropButton();
 
 			}
 		}
 		UpdateSimulatedCube();
 	}
-
-	void DownTheCube()
+	public Vector3 Round(Vector3 pos)
 	{
-		//transform.position = Vector3.Lerp(transform.position, DropPosition, Time.deltaTime * 1f);
-		DropPosition = transform.position - new Vector3(0, FindObjectOfType<GameController>().GetDistanceToButtom(this), 0);
-		transform.position = DropPosition;
+		return new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.y), Mathf.Round(pos.z));
+	}
+
+	private void DownTheCube()
+	{
+		if (cubeDrop)
+		{
+			transform.position = Vector3.Lerp(transform.position, DropPosition, Time.deltaTime * 3f);
+			if (((transform.position.y - DropPosition.y) < 0.05f) && cubeDrop)
+			{
+				transform.position = Round(DropPosition);
+
+				FindObjectOfType<GameController>().UpdateGrid(this);
+				enabled = false;
+				cubeDrop = false;
+				FindObjectOfType<GameController>().DropSpawn();
+			}
+		}
+	
+
+		////transform.position = Vector3.Lerp(transform.position, DropPosition, Time.deltaTime * 1f);
+		//DropPosition = transform.position - new Vector3(0, FindObjectOfType<GameController>().GetDistanceToButtom(this), 0);
+		//transform.position = DropPosition;
 	}
 
 	public void DropButton()
 	{
-		DropPosition = transform.position - new Vector3(0, FindObjectOfType<GameController>().GetDistanceToButtom(this), 0);
-		//while (transform.position.y - DropPosition.y > 0.1)
-		//{
-
-		//}
-		transform.position = DropPosition;
-		FindObjectOfType<GameController>().UpdateGrid(this);
-		enabled = false;
-		cubeDrop = false;
-		FindObjectOfType<GameController>().DropSpawn();
+		DropPosition= transform.position - new Vector3(0, FindObjectOfType<GameController>().GetDistanceToButtom(this), 0);
+		cubeDrop = true;
+		//transform.position = DropPosition;
+		DownTheCube();
+		
 	}
 
 	void UpdateSimulatedCube()

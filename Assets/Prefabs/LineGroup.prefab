@@ -819,6 +819,11 @@ MonoBehaviour:
   cameraFollow: {fileID: 0}
   cubes:
   - {fileID: 1565705837439418, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
+  - {fileID: 1823397916166366, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
+  - {fileID: 1173688594590020, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
+  - {fileID: 1570373074657288, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
+  - {fileID: 1480713119893330, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
+  - {fileID: 1399418031196974, guid: 176d25d477a027843979ff340c3ec32a, type: 2}
   dropPoints:
   - {fileID: 4522581755796472}
   cubeAngles:
@@ -829,6 +834,7 @@ MonoBehaviour:
   - {fileID: 4671505591976440}
   - {fileID: 4002036097120626}
   - {fileID: 4646756672936524}
+  cube_Clone: {fileID: 0}
 --- !u!114 &114361480542459748
 MonoBehaviour:
   m_ObjectHideFlags: 1
